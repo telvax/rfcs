@@ -1,6 +1,6 @@
 # RFC: request and response of an @endpoint
 
-* Status: draft
+* Status: accepted
 * Pull request: #2
 * Issues: telvax/telvax#125, telvax/telvax#126, telvax/telvax#127
 * Implementation: (link, when there is one)
@@ -91,8 +91,8 @@ members above and are documented in `std.md`.
 * **Path parameters in the payload type** (the field `job_id` of the struct is filled from the path). It hides
   where a value comes from and makes the same struct mean two things.
 
-## Open questions
+## Decisions
 
-* Should a path parameter that does not convert be 400 or 404?
-* Is a `Request.query(name)` needed, or is the payload type enough?
-* Do repeated headers need `Request.headers(name) -> List[Text]`?
+* A path parameter that does not convert is an HTTP 400.
+* There is no `Request.query(name)`: the payload type reads the query string.
+* A repeated header gives its first value. A list of values can be added later without breaking this.
