@@ -1,9 +1,9 @@
 # RFC: metrics, logs and middleware for telvax serve
 
-* Status: accepted
+* Status: implemented
 * Pull request: #7
 * Issues: telvax/telvax#129, telvax/telvax#130
-* Implementation: (none yet)
+* Implementation: telvax/telvax#146 and #147 (in main through #145)
 
 ## Summary
 

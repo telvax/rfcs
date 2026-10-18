@@ -1,9 +1,9 @@
 # RFC: a SQL client for PostgreSQL in std.db
 
-* Status: accepted
+* Status: implemented
 * Pull request: #9
 * Issues: telvax/telvax#134
-* Implementation: (none yet)
+* Implementation: telvax/telvax#150
 
 ## Summary
 
