@@ -1,7 +1,7 @@
 # RFC: server-sent events from an @endpoint
 
 * Status: draft
-* Pull request: #
+* Pull request: #5
 * Issues: telvax/telvax#128
 * Implementation: (none yet)
 
