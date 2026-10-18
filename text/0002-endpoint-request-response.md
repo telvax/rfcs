@@ -1,9 +1,9 @@
 # RFC: request and response of an @endpoint
 
-* Status: accepted
+* Status: implemented
 * Pull request: #2
 * Issues: telvax/telvax#125, telvax/telvax#126, telvax/telvax#127
-* Implementation: telvax/telvax#138, #139 and #140
+* Implementation: telvax/telvax#138 (with #139, #140, #141 and #142)
 
 ## Summary
 
