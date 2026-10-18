@@ -3,7 +3,7 @@
 * Status: accepted
 * Pull request: #2
 * Issues: telvax/telvax#125, telvax/telvax#126, telvax/telvax#127
-* Implementation: (link, when there is one)
+* Implementation: telvax/telvax#138, #139 and #140
 
 ## Summary
 
@@ -57,28 +57,34 @@ fn clear(req: Request) -> Result[Cleared, Status]:
 ```
 
 * `Request.header(name: Text) -> Text?`: the first value of the header; the name is not case sensitive.
-* `Request.method` and `Request.path` are `Text`. Nothing else for now.
+* `Request.method()` and `Request.path()` are `Text`. Nothing else for now. They are methods, not fields: fields of
+  a std type are not supported.
 
 ### Status and headers of the answer
 
-A function may return `Response[T]` instead of `T`.
+A function may return a `Response` inside its `Result` instead of the value.
 
 ```telvax
 @endpoint(POST, "/v1/analyze_batch")
-fn submit(input: Batch) -> Response[Accepted]:
+fn submit(input: Batch) -> Result[Response, Status]:
     let job = start(input)
-    Response(status: 202, headers: {"location": "/v1/results/" + job.id}, body: Accepted(job_id: job.id))
+    Ok(Response.new(Accepted(job_id: job.id))
+        .status(202)
+        .header("location", "/v1/results/" + job.id))
 ```
 
-* Fields: `status: Int` (default 200), `headers: Map[Text, Text]` (default empty), `body: T`.
-* The body is written as JSON, as today. `content-type: application/json` is added unless the headers set it.
-* `Result[Response[T], Status]` is allowed. `T` and `Result[T, Status]` keep working and answer `200`.
-* A status outside 100 to 599 is a runtime error and the answer is 500.
+* `Response.new(body)` is a `200` with no headers. `.status(code)` takes 100 to 599; any other value is an HTTP 500.
+  `.header(name, value)` replaces a header of the same name. The body is written as JSON, with
+  `content-type: application/json` unless a header sets it.
+* `Result[T, Status]` keeps working and answers `200`.
+* It is built with methods, not with `Response(status: 202, headers: ..., body: ...)`, and it is `Response`, not
+  `Response[T]`: a std type carries no type argument yet, so the body is not typed. Both can change when std
+  types can be generic.
 
 ### Where it is built
 
-`telvax_server`: the handler takes a `RequestParts { path, params, query, headers, body }` and returns
-a `Reply { status, headers, body }` instead of a JSON `Value` in and out. `telvax_hir` checks the path and the
+`telvax_server`: the handler takes a `Call { params, payload, request }` and returns a
+`Reply { status, headers, body }` instead of a JSON `Value` in and out. `telvax_hir` checks the path and the
 parameters; the interpreter builds `Request` and `Response`. `std.http.Request` and `std.http.Response` get the
 members above and are documented in `std.md`.
 
