@@ -1,7 +1,7 @@
 # RFC: request and response of an @endpoint
 
 * Status: draft
-* Pull request: #
+* Pull request: #2
 * Issues: telvax/telvax#125, telvax/telvax#126, telvax/telvax#127
 * Implementation: (link, when there is one)
 
