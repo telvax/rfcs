@@ -1,9 +1,9 @@
 # RFC: server-sent events from an @endpoint
 
-* Status: draft
+* Status: implemented
 * Pull request: #5
 * Issues: telvax/telvax#128
-* Implementation: (none yet)
+* Implementation: telvax/telvax#144
 
 ## Summary
 
@@ -38,13 +38,14 @@ import std.http.Sink
 
 @endpoint(POST, "/v1/analyze_stream")
 fn stream(input: Batch) -> Result[Response, Status]:
-    Ok(Response.events(sink =>
+    fn produce(sink: Sink):
         for text in input.texts:
             sink.send(score(text))
-        sink.event("done", "{}")))
+        sink.event("done", "{}")
+    Ok(Response.events(produce))
 ```
 
-* `Response.events(producer: fn(Sink) -> Unit) -> Response`. The server answers `200` with
+* `Response.events(producer: fn(Sink) -> Unit) -> Response`. A closure is one line, so the producer is usually an `fn` written inside the endpoint, which captures its parameters. The server answers `200` with
   `content-type: text/event-stream`, `cache-control: no-cache`, and runs `producer` while the client reads.
   `.status` and `.header` work as in RFC 0002.
 * `Sink.send(data)` writes one `data:` event. `data` is `Text` or any value that has JSON form (written as JSON).
