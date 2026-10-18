@@ -1,9 +1,9 @@
 # RFC: background tasks with std.task.spawn
 
-* Status: accepted
+* Status: implemented
 * Pull request: #8
 * Issues: telvax/telvax#136
-* Implementation: (none yet)
+* Implementation: telvax/telvax#149
 
 ## Summary
 
