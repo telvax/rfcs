@@ -20,3 +20,7 @@ Small fixes and bug reports do not need one: open an issue or a pull request in
 5. The implementation is a separate pull request in `telvax/telvax` that links the RFC. When it ships, set the status to `implemented`.
 
 An accepted RFC is a decision, not a promise of a date.
+
+## License
+
+Dual-licensed under MIT (`LICENSE-MIT`) or Apache 2.0 (`LICENSE-APACHE`), at your option.
