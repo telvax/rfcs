@@ -1,8 +1,8 @@
 # RFC: a `serve` block for the options of the server
 
-* Status: accepted
+* Status: implemented
 * Issues: telvax/telvax#180
-* Implementation: telvax/telvax (pull request to be linked)
+* Implementation: telvax/telvax#181
 
 ## Summary
 
