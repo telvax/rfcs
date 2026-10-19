@@ -1,8 +1,8 @@
 # RFC: `env()` in the `serve:` block
 
-* Status: accepted
+* Status: implemented
 * Issues: telvax/telvax#186
-* Implementation: telvax/telvax (pull request to be linked)
+* Implementation: telvax/telvax#187
 
 ## Summary
 
