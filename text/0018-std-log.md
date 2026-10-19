@@ -1,8 +1,8 @@
 # RFC: std.log
 
-* Status: accepted
+* Status: implemented
 * Issues: telvax/telvax#184, telvax/telvax#183
-* Implementation: telvax/telvax (pull request to be linked)
+* Implementation: telvax/telvax#187
 
 ## Summary
 

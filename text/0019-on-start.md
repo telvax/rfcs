@@ -1,8 +1,8 @@
 # RFC: functions that run before the server starts
 
-* Status: accepted
+* Status: implemented
 * Issues: telvax/telvax#185
-* Implementation: telvax/telvax (pull request to be linked)
+* Implementation: telvax/telvax#187
 
 ## Summary
 
@@ -22,17 +22,20 @@ up as a failed request instead of a server that does not start.
 fn init_db():
     db.execute("CREATE TABLE IF NOT EXISTS jobs (...)", [])
 
-fn check_config() -> Result[Unit, Text]:
+fn nothing():
+    pass
+
+fn check_config() -> Result[(), Text]:
     if admin_token == "" and database_url != "":
         return Err("ADMIN_TOKEN is required when DATABASE_URL is set")
-    Ok(())
+    Ok(nothing())
 
 serve:
     on_start: [check_config, init_db]
     metrics: True
 ```
 
-* The value is a list of names of top-level functions with no parameters, returning nothing or `Result[Unit, Text]`.
+* The value is a list of names of top-level functions with no parameters, returning nothing or `Result[(), Text]`.
   Like `middleware` in RFC 0017, it is the one kind of `serve:` value that is not a literal: `check` resolves the names.
   The function may be imported (`from db import init_db`).
 * They run in the order written, one after the other, in the interpreter, with the capabilities of the program (`--live`,
@@ -53,5 +56,6 @@ serve:
 
 ## Open questions
 
+* A program cannot write `Ok(())` yet (there is no `()` in an expression), so the example ends with a call to a function that gives nothing.
 * A matching `on_stop`, to run after the requests and tasks of a stopping server (RFC 0015) finish.
 * A time limit for a function that never returns.
