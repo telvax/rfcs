@@ -1,8 +1,8 @@
 # RFC: middleware written in Telvax
 
-* Status: accepted
+* Status: implemented
 * Issues: telvax/telvax#182
-* Implementation: telvax/telvax (pull request to be linked)
+* Implementation: telvax/telvax#192
 
 ## Summary
 
