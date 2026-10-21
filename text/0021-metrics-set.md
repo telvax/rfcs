@@ -1,8 +1,8 @@
 # RFC: `std.metrics.set`, a gauge for a value that goes up and down
 
-* Status: accepted
+* Status: implemented
 * Issues: telvax/telvax#203
-* Implementation: telvax/telvax (pull request to be linked)
+* Implementation: telvax/telvax#220
 
 ## Summary
 
