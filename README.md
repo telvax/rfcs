@@ -1,3 +1,10 @@
+<p align="center">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="assets/symbol-dark.svg">
+<img src="assets/symbol-light.svg" alt="The Telvax symbol: a T made of a 2 by 3 tensor between brackets" width="120">
+</picture>
+</p>
+
 # Telvax RFCs
 
 An RFC is a written proposal for a change to the language, the standard library or the tools.
